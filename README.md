@@ -1,2 +1,2 @@
 # autometa
-A test framework over selenium webDriver
+A test framework over selenium webDriver and jUnit
