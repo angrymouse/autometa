@@ -23,11 +23,10 @@ public class DriverFactory {
 //		  ).collect(Collectors.toMap(e -> e.browserName, e -> e.driverCapabilities));
 
 	static {
-		System.setProperty("webdriver.chrome.driver", (new File(DriverFactory.class.getResource("/chromedriver.exe").getFile().toString())));
+		System.setProperty("webdriver.chrome.driver", (DriverFactory.class.getResource(Browser.CHROME.getBrowserDriverPath()).getFile().toString()));
 	}
 	  public static WebDriver createDriver(Browser browser) {
 		try {
-			System.out.println();
 			return callConstructor(browser);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -35,7 +34,7 @@ public class DriverFactory {
 	  }
 	  
 	  private static WebDriver callConstructor(Browser browser) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		  Class<? extends WebDriver> from = Class.forName(browser.getBrowserDriverName()).asSubclass(WebDriver.class);
+		  Class<? extends WebDriver> from = Class.forName(browser.getBrowserDriverClass()).asSubclass(WebDriver.class);
 		  Constructor<? extends WebDriver> constructor = from.getConstructor(Capabilities.class);
 	      
 		  return constructor.newInstance(browser.getBrowseCapabilities());

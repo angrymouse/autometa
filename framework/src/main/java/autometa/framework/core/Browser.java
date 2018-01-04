@@ -4,16 +4,24 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public enum Browser {
-	CHROME("org.openqa.selenium.chrome.ChromeDriver");
+	CHROME("org.openqa.selenium.chrome.ChromeDriver", "/chromedriver.exe");
 	
-	private final String browserDriverName;
+	private final String browserDriverClass;
 	
-	private Browser(String browserDriverName) {
-		this.browserDriverName = browserDriverName;
+	//Driver name inside resources
+	private final String browserDriverPath;
+	
+	private Browser(String browserDriverClass, String browserDriverPath) {
+		this.browserDriverClass = browserDriverClass;
+		this.browserDriverPath = browserDriverPath;
 	}
-
-	public String getBrowserDriverName() {
-		return browserDriverName;
+	
+	public String getBrowserDriverClass() {
+		return browserDriverClass;
+	}
+	
+	public String getBrowserDriverPath() {
+		return browserDriverPath;
 	}
 	
 	public Capabilities getBrowseCapabilities() {
