@@ -9,7 +9,6 @@ import autometa.framework.core.DriverFactory;
 public class Tasdas {
 	@Test
     public void teste() {
-		
-		WebDriver w = DriverFactory.createDriver(Browser.CHROME);
+		WebDriver w = DriverFactory.createDriver(Browser.FIREFOX);
     }
 }
